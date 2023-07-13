@@ -1,0 +1,15 @@
+﻿[Arrow]
+Path=Blue Cursor (Original).ani
+
+[Wait]
+Path=Blue Cursor Busy.ani
+
+[Help]
+Path=Blue Cursor Help.ani
+
+[AppStarting]
+Path=Blue Cursor Timer.ani
+
+[Hand]
+Path=Blue Link Select.ani
+

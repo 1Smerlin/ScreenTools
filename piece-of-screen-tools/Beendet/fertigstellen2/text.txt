@@ -1,0 +1,4 @@
+In diesem Code wird das Bild "pic" mit dem Pillow-Modul ge6finet und in ein Numpy-
+‘Array konvertiet. AnschiieBend wird das Numpy-Array mit Pytesseract verarbeitet, um.
+den Text aus dem Bild zu extrahieren. Der extrahierte Text wird dann in eine Textdatel
+“savePfad” geschrieben.
