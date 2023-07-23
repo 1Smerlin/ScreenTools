@@ -2,36 +2,39 @@
 
 ## Foreword
 
-This is a beta version and is still under construction. The program is still fully functional on Windows and soon also compatible with Linux. Therefore, I ask for some patience and understanding.
+This is a beta version and is still under construction.  
+The program is already fully functional under Windows and soon also compatible with Linux.  
+Therefore I ask for some patience and understanding.
 
 ## content
 
-The Windows folder contains 2 working versions for Windows.
+The Windows folder contains 2 working versions for Windows.  
 And in the Linux folder the same versions slightly modified, but not yet fully compatible for Linux.
 
 ### pygame
 
 
-Is the one version that can pause and cancel the read aloud process.
+Is the one version that can pause and cancel the read aloud process.  
 But unfortunately it can not adjust the read aloud speed and fast forward/backward.
 
 I do not recommend this version at this time because it is incomplete.
 
 ### pytttxs3
 
-Is the one version that allows you to set the speed of the read aloud function.
-But unfortunately the read aloud process can neither be fast-forwarded/fast-forwarded, paused nor canceled.
+is the only version where you can adjust the speed of the read aloud function.
+But unfortunately, you cannot fast-forward, rewind, pause or cancel the read aloud.
 
-I recommend this version because it is complete.
-Except for the read aloud function, which lacks the ability to pause, cancel, spool, change speed while reading aloud and change the voice.
+I recommend this version because it is complete.  
+Except for the read aloud function, which lacks the ability to pause, cancel, spool, change speed while reading aloud and change the voice.  
 
-Currently, when setting the shortcuts and the reading speed, it is still necessary to rewrite it manually in the code.
+Currently, when setting the shortcuts and the reading speed, it is still necessary to rewrite it manually in the code.  
 This will also be added to the GUI in the future.
 
 
 ## shortcuts 
 
-|#### shortcuts |#### action|
+|shortcuts|action|
+|-|-|
 |ALT + Q|Open Menü|
 |ALT + Y|Open outputFolder|
 |ALT + X|Cut Screenshot|
@@ -43,12 +46,12 @@ This will also be added to the GUI in the future.
 ## Installation
 
 To use the screentool you need Tesseract
--[Orgin](https://github.com/tesseract-ocr/tesseract "Officers Tesseract website")
--[orginal from Tesseract](https://tesseract-ocr.github.io/tessdoc/Installation.html "Guide to the installation of Tesseract")
+- [Officers Tesseract website](https://github.com/tesseract-ocr/tesseract "Orgin")
+- [Guide to the installation of Tesseract](https://tesseract-ocr.github.io/tessdoc/Installation.html "orginal from Tesseract")
 
 ### Windows Installation
 
-Downloade from the [Tesseract Version for Windows](https://github.com/UB-Mannheim/tesseract/wiki "Tesseract at UB Mannheim") and run the installer
+Downloade from the [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki "Tesseract Version for Windows") and run the installer
 
 ### Linux Installation
 
