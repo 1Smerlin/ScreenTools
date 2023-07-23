@@ -40,7 +40,7 @@ This will also be added to the GUI in the future.
 |ALT + X|Cut Screenshot|
 |ALT + C|Copy Text From Screen|
 |ALT + V|reads the test aloud From Screen|
-|ALT + 1-9|makes a Screenshotof 1-9 screen|
+|ALT + 1-9|makes a Screenshot of 1-9 screen|
 
 
 ## Installation
