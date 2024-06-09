@@ -5,9 +5,9 @@
 # Stadart Bibliothken
 import ctypes
 import sys
+import os
 
 import time
-import os
 import subprocess
 import multiprocessing
 import tkinter as tk
@@ -21,6 +21,7 @@ import mouse
 import mss
 import numpy as np
 import pytesseract
+
 # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 import pyttsx3
 import cv2
@@ -50,6 +51,7 @@ def textFilter(text):
 
 # Funtionen
 
+
 # open folder in Explore
 def openFolderExplorer(folder_path):
     os_name = platform.system()
@@ -65,10 +67,11 @@ def openFolderExplorer(folder_path):
             subprocess.run(["su", "-c", f"dolphin {os.path.abspath(folder_path)}", username])
         else:
             subprocess.run(["su", "-c", f"xdg-open {os.path.abspath(folder_path)}", username])
-    elif os_name == "Darwin": # macOS
+    elif os_name == "Darwin":  # macOS
         subprocess.run(["open", os.path.abspath(folder_path)])
     else:
         print(f"Unsupported operating system: {os_name}")
+
 
 # Screenshot
 
@@ -133,9 +136,7 @@ def resize_image(image, scale_percent=800):
     return binary
 
 
-def pic_to_text(
-    pic="./outputFolder/screenshot.png", savePfad="./outputFolder/text.txt"
-):
+def pic_to_text(pic="./outputFolder/screenshot.png", savePfad="./outputFolder/text.txt"):
     print("!!!---pic_to_text---!!!")
     # Picture to Text Code
     global string
@@ -170,9 +171,7 @@ def openText(textPfad="./outputFolder/text.txt"):
         textWindow.title("Dateiinhalt anzeigen")
         textWindow.wm_attributes("-topmost", 1)
         width, height = 600, 300
-        textWindow.geometry(
-            f"{width}x{height}+{(screenSize['left']+screenSize['width']-width-10)}+{(screenSize['top']+screenSize['height']-height-30)}"
-        )
+        textWindow.geometry(f"{width}x{height}+{(screenSize['left']+screenSize['width']-width-10)}+{(screenSize['top']+screenSize['height']-height-30)}")
 
         # Text Widget erstellen
         text_widget = tk.Text(textWindow)
@@ -220,9 +219,7 @@ def changeMouseColor():
     IDC_ARROW = 32512
 
     def set_cursor(cursor_file):
-        h_cursor = user32.LoadImageW(
-            0, cursor_file, IMAGE_CURSOR, 0, 0, LR_LOADFROMFILE
-        )
+        h_cursor = user32.LoadImageW(0, cursor_file, IMAGE_CURSOR, 0, 0, LR_LOADFROMFILE)
         user32.SetSystemCursor(h_cursor, IDC_ARROW)
 
     cursor_file = os.path.abspath("./img/Normal_Select.ani")
@@ -238,9 +235,7 @@ def mousDefaultColor():
     SPIF_SENDCHANGE = 0x02
 
     try:
-        if not user32.SystemParametersInfoW(
-            SPI_SETCURSORS, 0, None, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE
-        ):
+        if not user32.SystemParametersInfoW(SPI_SETCURSORS, 0, None, SPIF_UPDATEINIFILE | SPIF_SENDCHANGE):
             print(
                 "Fehler beim Zurücksetzen des Mauszeigers:",
                 ctypes.get_last_error(),
@@ -288,15 +283,14 @@ def on_mouse_up(block_queue, screenKordinate_queue):
 
 def blockScreen(block_queue):
     print("!!!---blockScreen---!!!")
+
     def block_close():
         blockWindow.destroy()
 
     screenSize = mss.mss().monitors[0]
     blockWindow = tk.Tk()
     blockWindow.overrideredirect(True)
-    blockWindow.geometry(
-        f"{screenSize['width']}x{screenSize['height']}+{screenSize['left']}+{screenSize['top']}"
-    )
+    blockWindow.geometry(f"{screenSize['width']}x{screenSize['height']}+{screenSize['left']}+{screenSize['top']}")
 
     blockWindow.protocol("WM_DELETE_WINDOW", block_close)
     blockWindow.wm_attributes("-topmost", 1)
@@ -317,9 +311,7 @@ def mousKordinate(block_queue, screenKordinate_queue):
     print("!!!---mousKordinate---!!!")
     global screenKordinate
 
-    blockScreen_process = multiprocessing.Process(
-        target=blockScreen, args=(block_queue,)
-    )
+    blockScreen_process = multiprocessing.Process(target=blockScreen, args=(block_queue,))
     blockScreen_process.start()
     changeMouse_process = multiprocessing.Process(target=changeMouseColor)
     changeMouse_process.start()
@@ -424,9 +416,7 @@ def button_clicked(
                 if status == "closed":
                     screenShot(1, screenKordinate)
                     pic_to_text()
-                    speach_process = multiprocessing.Process(
-                        target=textToSpeech, args=("./outputFolder/text.txt",)
-                    )
+                    speach_process = multiprocessing.Process(target=textToSpeech, args=("./outputFolder/text.txt",))
                     speach_process.start()
                     menu_process = multiprocessing.Process(
                         target=menuWindow,
@@ -447,9 +437,7 @@ def button_clicked(
             if not screenKordinate["width"] == 0 and not screenKordinate["height"] == 0:
                 screenShot(1, screenKordinate)
                 pic_to_text()
-                speach_process = multiprocessing.Process(
-                    target=textToSpeech, args=("./outputFolder/text.txt",)
-                )
+                speach_process = multiprocessing.Process(target=textToSpeech, args=("./outputFolder/text.txt",))
                 speach_process.start()
     elif button_name == "Folder":
         print("Folder: " + button_name)
@@ -502,10 +490,9 @@ def fuctionStart(
 
 
 # Menu
-def menuWindow(
-    window_open, command_queue, status_queue, block_queue, screenKordinate_queue
-):
+def menuWindow(window_open, command_queue, status_queue, block_queue, screenKordinate_queue):
     print("!!!---menuWindow---!!!")
+
     def on_close():
         nonlocal root
         with window_open.get_lock():
@@ -614,9 +601,7 @@ def allClose(window_open, command_queue):
             command_queue.put("close")
 
 
-def button_process(
-    name, window_open, command_queue, status_queue, block_queue, screenKordinate_queue
-):
+def button_process(name, window_open, command_queue, status_queue, block_queue, screenKordinate_queue):
     print("!!!---button_process---!!!")
     button_clicked_process = multiprocessing.Process(
         target=button_clicked,
@@ -632,9 +617,7 @@ def button_process(
     button_clicked_process.start()
 
 
-def keyShot(
-    window_open, command_queue, status_queue, block_queue, screenKordinate_queue
-):
+def keyShot(window_open, command_queue, status_queue, block_queue, screenKordinate_queue):
     print("!!!---keyShot---!!!")
     numberOfScreen = len(mss.mss().monitors) - 1
     keyboard.add_hotkey(
